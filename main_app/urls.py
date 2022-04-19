@@ -18,14 +18,17 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 
-from product import views
+from product.views import ProductListView, ProductDetailView
+from consumer.views import ConsumerView, ConsumerDetailView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
     path('ckeditor/', include('ckeditor_uploader.urls')),
-    path('product/', views.ProductListView.as_view()),
-    path('product/<int:pk>/', views.ProductDetailView.as_view()),
+    path('product/', ProductListView.as_view()),
+    path('product/<int:pk>/', ProductDetailView.as_view()),
+    path('consumer/', ConsumerView.as_view()),
+    path('consumer/<int:pk>/', ConsumerDetailView.as_view()),
 ]
 
 if settings.DEBUG:
