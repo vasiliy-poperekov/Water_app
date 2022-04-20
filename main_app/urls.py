@@ -18,8 +18,9 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 
-from product.views import ProductListView, ProductDetailView
-from consumer.views import ConsumerView, ConsumerDetailView
+from factory.views import ConsumerView, ConsumerDetailView, ProductListView, ProductDetailView
+from user.views import UserView, UserDetailView, OrderView, OrderDetailView
+from delivery.views import DeliveryServiceView, DeliveryServiceDetailView, DeliveryManView, DeliveryManDetailView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,8 +28,16 @@ urlpatterns = [
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path('product/', ProductListView.as_view()),
     path('product/<int:pk>/', ProductDetailView.as_view()),
-    path('consumer/', ConsumerView.as_view()),
-    path('consumer/<int:pk>/', ConsumerDetailView.as_view()),
+    path('factory/', ConsumerView.as_view()),
+    path('factory/<int:pk>/', ConsumerDetailView.as_view()),
+    path('order/', OrderView.as_view()),
+    path('order/<int:pk>/', OrderDetailView.as_view()),
+    path('delivery_man/', DeliveryManView.as_view()),
+    path('delivery_man/<int:pk>/', DeliveryManDetailView.as_view()),
+    path('deliver_service/', DeliveryServiceView.as_view()),
+    path('deliver_service/<int:pk>/', DeliveryServiceDetailView.as_view()),
+    path('user/', UserView.as_view()),
+    path('user/<int:pk>/', UserDetailView.as_view()),
 ]
 
 if settings.DEBUG:

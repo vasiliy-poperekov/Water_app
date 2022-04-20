@@ -9,31 +9,30 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('factory', '0001_initial'),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Order',
-            fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('count_of_products', models.IntegerField()),
-                ('address', models.TextField()),
-                ('product', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, related_name='count_of_products', to='factory.product')),
-            ],
-        ),
-        migrations.CreateModel(
-            name='User',
+            name='Consumer',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.TextField()),
-                ('phone_number', models.TextField()),
-                ('orders', models.ManyToManyField(blank=True, related_name='orders', to='user.order')),
+                ('well_info', models.TextField()),
+            ],
+        ),
+        migrations.CreateModel(
+            name='Product',
+            fields=[
+                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('name', models.TextField()),
+                ('volume', models.FloatField()),
+                ('consist', models.TextField()),
+                ('consumer', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='consumer', to='factory.consumer')),
             ],
         ),
         migrations.AddField(
-            model_name='order',
-            name='user',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='user_id', to='user.user'),
+            model_name='consumer',
+            name='products',
+            field=models.ManyToManyField(blank=True, related_name='products', to='factory.product'),
         ),
     ]
